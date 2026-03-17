@@ -3,7 +3,13 @@ h1 {
     font-size: 100px; 
     color: white;
     background-color: red;
+    border-radius: 30px;
+    height: 200px;
+
+
 }
+
+
 body {
   margin: 0;
   height: 100vh;
@@ -16,4 +22,21 @@ body {
   0% {background-position: 0% 50%;}
   50% {background-position: 100% 50%;}
   100% {background-position: 0% 50%;}
+}
+
+
+button {
+    border-radius: 30px;
+      margin: 0;
+  height: 50px;
+  background: linear-gradient(270deg, #0a69e6, #b30ec2, #7808d4, #180ace);
+  background-size: 800% 800%;
+  animation: fondoAnimado 10s ease infinite;
+  
+}
+@keyframes fondoAnimado {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+
 }
