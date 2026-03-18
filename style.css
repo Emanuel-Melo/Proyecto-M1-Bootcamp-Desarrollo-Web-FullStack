@@ -13,26 +13,42 @@ body {
     margin: 0;
     height: 100vh;
     background: linear-gradient(270deg, #0abfc5, #07be2f, #67ce07, #b3d107);
-    background-size: 800% 800%;
-    animation: fondoAnimado 10s ease infinite;
+    background-size: 500% 500%;
+    animation: degradaciónFondo 10s ease infinite;
 }
-    @keyframes fondoAnimado {
+    @keyframes degradaciónFondo {
     0% {background-position: 0% 50%;}
     50% {background-position: 100% 50%;}
     100% {background-position: 0% 50%;}
     }
 
-
 button {
-    border-radius: 30px;
-    padding-left: 400px;
-    margin: 0;
-    height: 50px;
-    background: linear-gradient(270deg, #0a69e6, #b30ec2, #7808d4, #180ace);
-    background-size: 800% 800%;
-    animation: fondoAnimado 10s ease infinite;
+    height: 40px;
+    padding: 10px 20px;             
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.226);
+    transition: all 0.5s ease;
 }
-    @keyframes fondoAnimado {
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.568);
+}
+
+button:active {
+  transform: translateY(1px);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.212);
+}
+button {
+    background: linear-gradient(270deg, #0a69e6, #b30ec2, #7808d4, #180ace);
+    background-size: 500% 500%;
+    animation: degradaciónBoton 6s ease infinite;
+}
+    @keyframes degradaciónBoton {
     0% {background-position: 0% 50%;}
     50% {background-position: 100% 50%;}
     100% {background-position: 0% 50%;}
