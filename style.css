@@ -59,15 +59,17 @@ h2 {
     display: flex;
     height: 160px;
     justify-content: center;
+    background-color: rgb(126, 133, 149);
+    border-radius: 15px;
 }
 
 .item {
-    background-color: #c9cad3;
-    color: #7e8595;
+    background-color: rgb(126, 133, 149);
+    color: #c9cad3;
     padding: 20px;
     margin: 5px;
     text-align: center;
-    border-color: rgb(0, 0, 0);
+    border: 2px solid #c9cad3;
     border-radius: 15px;
     flex: 2;
 }
