@@ -3,22 +3,34 @@ body {
     height: 100vh;
     background: linear-gradient(270deg, #88515f, #a38a89, #7492b1, #34414f);
     background-size: 800% 800%;
-    animation: degradaciónFondo 10s ease infinite;
+    animation: degradaciónFondo 10s ease infinite, slide 3s ease 1;
 }
 @keyframes degradaciónFondo {
     0% {background-position: 0% 50%;}
     50% {background-position: 100% 50%;}
     100% {background-position: 0% 50%;}
 }
+@keyframes slide {
+    from {
+    translate: 150vw 0;
+    scale: 200% 1;
+    }
+
+    to {
+    translate: 0 0;
+    scale: 100% 1;
+    }
+}   
 
 span{
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: Arial, Helvetica, sans-serifx;
     display: flex;
     width: fit-content;
     margin: 0 auto;
     height: 300px;
     align-items: flex-end;
     color: rgb(222, 238, 255);
+    font-size: 13px;
 }
 h1 {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -28,15 +40,17 @@ h1 {
     display: block; 
     width: fit-content;
     margin: 0 auto;
+    animation-duration: 3s;
+    animation-name: slide;
 }
 
 h2 {
     color: rgb(222, 238, 255);
-    margin: -10px 0px 50px;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     display: block; 
     width: fit-content;
     margin: 0 auto;
+    height: 400px;
 }
 
 .contenedor {
