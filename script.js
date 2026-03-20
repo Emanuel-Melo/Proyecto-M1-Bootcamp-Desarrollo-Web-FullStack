@@ -36,4 +36,6 @@ function obtenerModo() {
     }
 }
 
-console.log(obtenerModo());
+boton.addEventListener("click", function() {
+    console.log(obtenerModo());
+});
