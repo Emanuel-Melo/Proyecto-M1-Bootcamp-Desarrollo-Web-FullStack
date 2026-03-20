@@ -25,6 +25,17 @@ boton.addEventListener("click", function() {
 alert("Paleta generada 🎨");
 });
 
+colores.forEach(function(caja) {
+    caja.addEventListener("click", function() {
+        const texto = caja.textContent;
+        navigator.clipboard.writeText(texto);
+        caja.textContent = "Copiado ✅";
+        setTimeout(function() {
+            caja.textContent = texto;
+        }, 1000);
+    });
+});
+
 
 function generarColorHEX() {
     const caracteres = "0123456789ABCDEF";
