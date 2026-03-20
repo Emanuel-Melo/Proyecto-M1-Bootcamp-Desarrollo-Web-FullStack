@@ -20,7 +20,9 @@ boton.addEventListener("click", function() {
     } else {
         caja.style.display = "none";
     }
+     
 });
+alert("Paleta generada 🎨");
 });
 
 function generarColorHEX() {
