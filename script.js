@@ -4,8 +4,17 @@ const select = document.getElementById("cantidad");
 const modos = document.getElementsByName("mode");
 
 boton.addEventListener("click", function() {
-    const color = generarColorHEX();
-    colores[0].style.backgroundColor = color;
+    const cantidad = parseInt(select.value);
+    colores.forEach(function(caja, index) {
+        if (index < cantidad) {
+            const color = generarColorHEX();
+            caja.style.backgroundColor = color;
+            caja.textContent = color;
+            caja.style.display = "block";
+        } else {
+            caja.style.display = "none";
+        }
+    });
 });
 
 function generarColorHEX() {
