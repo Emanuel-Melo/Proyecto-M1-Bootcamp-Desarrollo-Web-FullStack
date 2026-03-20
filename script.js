@@ -28,4 +28,12 @@ function generarColorHEX() {
     return color;
 }
 
-console.log(generarColorHEX());
+function obtenerModo() {
+    for (let modo of modos) {
+        if (modo.checked) {
+            return modo.value;
+        }
+    }
+}
+
+console.log(obtenerModo());
