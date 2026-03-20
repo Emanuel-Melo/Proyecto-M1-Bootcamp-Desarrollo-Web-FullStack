@@ -3,6 +3,7 @@ const colores = document.querySelectorAll(".color");
 const select = document.getElementById("cantidad");
 const modos = document.getElementsByName("mode");
 
+
 boton.addEventListener("click", function() {
     const cantidad = parseInt(select.value);
     colores.forEach(function(caja, index) {
@@ -20,10 +21,10 @@ boton.addEventListener("click", function() {
     } else {
         caja.style.display = "none";
     }
-     
 });
 alert("Paleta generada 🎨");
 });
+
 
 function generarColorHEX() {
     const caracteres = "0123456789ABCDEF";
@@ -36,20 +37,20 @@ function generarColorHEX() {
     return color;
 }
 
-function obtenerModo() {
-    for (let modo of modos) {
-        if (modo.checked) {
-            return modo.value;
-        }
-    }
-}
-
 function generarColorHSL() {
     const h = Math.floor(Math.random() * 360);
     const s = Math.floor(Math.random() * 100);
     const l = Math.floor(Math.random() * 100);
 
     return `hsl(${h}, ${s}%, ${l}%)`;
+}
+
+function obtenerModo() {
+    for (let modo of modos) {
+        if (modo.checked) {
+            return modo.value;
+        }
+    }
 }
 
 boton.addEventListener("click", function() {
