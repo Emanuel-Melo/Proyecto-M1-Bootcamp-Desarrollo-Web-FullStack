@@ -6,15 +6,21 @@ const modos = document.getElementsByName("mode");
 boton.addEventListener("click", function() {
     const cantidad = parseInt(select.value);
     colores.forEach(function(caja, index) {
-        if (index < cantidad) {
-            const color = generarColorHEX();
-            caja.style.backgroundColor = color;
-            caja.textContent = color;
-            caja.style.display = "block";
+    if (index < cantidad) {
+        let color;
+        const modo = obtenerModo();
+        if (modo === "hex") {
+            color = generarColorHEX();
         } else {
-            caja.style.display = "none";
+            color = generarColorHSL();
         }
-    });
+        caja.style.backgroundColor = color;
+        caja.textContent = color;
+        caja.style.display = "flex";
+    } else {
+        caja.style.display = "none";
+    }
+});
 });
 
 function generarColorHEX() {
@@ -34,6 +40,14 @@ function obtenerModo() {
             return modo.value;
         }
     }
+}
+
+function generarColorHSL() {
+    const h = Math.floor(Math.random() * 360);
+    const s = Math.floor(Math.random() * 100);
+    const l = Math.floor(Math.random() * 100);
+
+    return `hsl(${h}, ${s}%, ${l}%)`;
 }
 
 boton.addEventListener("click", function() {
