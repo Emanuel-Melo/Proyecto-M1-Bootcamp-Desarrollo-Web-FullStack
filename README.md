@@ -6,7 +6,7 @@ Aplicación web interactiva que genera paletas de colores aleatorias en formato 
 
 Demo
 
-🔗 (Aquí irá el link de GitHub Pages)
+🔗 ((https://emanuel-melo.github.io/Proyecto-M1-Bootcamp-Desarrollo-Web-FullStack/)
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
 
