@@ -58,7 +58,7 @@ Se implementaron media queries para adaptar la interfaz a diferentes tamaños de
 
 Capturas
 
-(Aquí agregarás imágenes del proyecto)
+(![Vista de la app](Documentacion/capturas/capturapáginaweb.png))
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
 
