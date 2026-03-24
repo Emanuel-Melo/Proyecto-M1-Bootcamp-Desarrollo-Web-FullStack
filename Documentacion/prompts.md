@@ -11,7 +11,7 @@ necesito poner a h1 en el centro, que me recomiendas?
 
 **Respuesta obtenida:**
 Es el método más moderno y profesional.
-```
+```CSS
 import foobar
 body {
     margin: 0;
@@ -35,7 +35,7 @@ El h1 queda perfectamente centrado en toda la pantalla.
 🟢 Método simple (solo horizontal)
 
 Si solo quieres centrarlo horizontalmente:
-```
+```css
 h1 {
     text-align: center;
 }
@@ -48,7 +48,7 @@ h1 {
 }
 ```
 **Aplicación en el proyecto:**
-Se implementó una función que genera colores HEX dinámicamente para cada celda de la paleta.
+Se implementó esta función en varias de las etiquetas siguientes en el archivo css.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
