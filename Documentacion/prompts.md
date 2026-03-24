@@ -715,18 +715,6 @@ nav {
 Se aplicó esta correción al apartado de a, y se corrigío el error en algunas etiquetas con la réplica del error.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
-## Prompt 6: Responsive design
-
-**Prompt:**
-¿Cómo hacer una página responsive con CSS?
-
-**Respuesta obtenida:**
-Uso de media queries (`@media`).
-
-**Aplicación en el proyecto:**
-Se adaptó la interfaz a dispositivos móviles y tablets.
-
--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ## Prompt 12: Responsive design
 
 **Prompt:**
