@@ -155,32 +155,171 @@ Se usó a lo largo del desarrollo del proyecto, más que todo con la consola y e
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-## Prompt 4: Eventos en JavaScript
+## Prompt 4: Sitio web estático
 
 **Prompt:**
-¿Cómo ejecutar una función al hacer clic en un botón?
+cuando me dicen que es una sitio web estatico, significa que no se hace scroll?
 
 **Respuesta obtenida:**
-Uso de `addEventListener("click", ...)`.
+No — eso es un malentendido bastante común 😄
+
+🧠 ¿Qué es realmente un sitio web estático?
+Un sitio web estático es aquel donde:
+El contenido está predefinido (HTML, CSS, JS)
+No cambia desde el servidor según el usuario
+No hay procesamiento dinámico en backend
+
+👉 Es decir: todos los usuarios ven básicamente lo mismo.
+
+🔍 Entonces… ¿puede tener scroll?
+✅ Sí, totalmente
+El scroll depende del contenido y el diseño, no de si es estático o dinámico.
+
+🧾 Ejemplo claro
+✔️ Sitio estático con scroll
+Una página larga como:
+Portafolio
+Landing page
+Blog simple
+
+Puede tener mucho contenido → entonces hay scroll.
 
 **Aplicación en el proyecto:**
-Se implementó para generar nuevas paletas al presionar el botón.
+Se usó de conocimiento y fue parte para la planeación visual del proyecto.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-## Prompt 5: Copiar al portapapeles
+## Prompt 5: Desplegable en HTML
 
 **Prompt:**
-¿Cómo copiar texto al portapapeles en JavaScript?
+Dame un trozo de código para añadir un desplegable sin uso de css inline, y  no tan avanzado, uso de programación nivel junior
 
 **Respuesta obtenida:**
-Uso de `navigator.clipboard.writeText()`.
+Vamos a refactorizarlo estilo junior bien hecho:
 
+Separar HTML y CSS
+Reducir repetición
+Hacerlo más claro
+✅ Versión limpia y simple
+📄 HTML
+````html
+<div class="dropdown">
+  <button class="dropdown-btn" id="btn">Seleccionar color</button>
+
+  <div class="dropdown-content" id="menu">
+    <div data-color="Rojo">Rojo</div>
+    <div data-color="Azul">Azul</div>
+    <div data-color="Verde">Verde</div>
+  </div>
+</div>
+````
+🎨 CSS
+````css
+.dropdown {
+  position: relative;
+  width: 200px;
+}
+
+.dropdown-btn {
+  width: 100%;
+  padding: 10px;
+  background: #3498db;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  width: 100%;
+  background: #f1f1f1;
+  margin-top: 5px;
+  border-radius: 5px;
+}
+
+.dropdown-content div {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.dropdown-content div:hover {
+  background: #ddd;
+}
+````
 **Aplicación en el proyecto:**
-Permite copiar el código del color al hacer clic en cada celda.
+Se implemento parte del código en el proyecto, con algunas modificaciones como id o pequeños cambios en las funciones en css.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+## Prompt 6: Tipografías css
+
+**Prompt:**
+dame ideas para un font-family, que tipografias tienes que convinen con la funcion de la pagina web?
+
+**Respuesta obtenida:**
+Mejores tipos de tipografía para tu proyecto
+✅ 1. Sans-serif (la mejor opción 🔥)
+Son modernas y claras, perfectas para interfaces.
+💡 Ejemplos:
+````css
+font-family: Arial, Helvetica, sans-serif;
+````
+👉 Fácil, segura y funciona en todos los navegadores.
+
+🔥 2. Más modernas (tipo UI / diseño)
+Se ven más “pro” y actuales.
+💡 Ejemplos:
+````css
+font-family: 'Poppins', sans-serif;
+font-family: 'Roboto', sans-serif;
+font-family: 'Inter', sans-serif;
+````
+👉 Estas son muy usadas en apps reales.
+
+🎯 3. Estilo creativo (para darle personalidad)
+Si quieres que tu web se vea más “de diseño”.
+💡 Ejemplo:
+````css
+font-family: 'Montserrat', sans-serif;
+````
+👉 Funciona muy bien con proyectos visuales como colores.
+
+🧠 ¿Cuál te conviene a ti?
+Para tu proyecto:
+
+👉 🥇 Inter o Poppins → moderno y limpio
+👉 🥈 Roboto → muy equilibrado
+👉 🥉 Arial → si quieres algo simple y seguro
+
+💡 Ejemplo recomendado (listo para usar)
+````css
+body {
+  font-family: 'Poppins', sans-serif;
+}
+````
+⚠️ Importante
+Si usas fuentes como Poppins o Inter, necesitas importarlas:
+````html
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+````
+**Aplicación en el proyecto:**
+Despues de muchos cambios, se decidió usar arial, helvetica y sans-serif, aunque despues de un poco de investigación de las tipografías del sistema, se agregó principalmente una de system-ui, de apple system
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+## Prompt 6: Responsive design
+
+**Prompt:**
+¿Cómo hacer una página responsive con CSS?
+
+**Respuesta obtenida:**
+Uso de media queries (`@media`).
+
+**Aplicación en el proyecto:**
+Se adaptó la interfaz a dispositivos móviles y tablets.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ## Prompt 6: Responsive design
 
 **Prompt:**
