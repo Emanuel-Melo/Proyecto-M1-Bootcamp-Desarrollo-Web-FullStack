@@ -308,6 +308,196 @@ Si usas fuentes como Poppins o Inter, necesitas importarlas:
 Despues de muchos cambios, se decidió usar arial, helvetica y sans-serif, aunque despues de un poco de investigación de las tipografías del sistema, se agregó principalmente una de system-ui, de apple system
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
+## Prompt 7: Explicación código visto en video
+
+**Prompt:**
+Explicame esta animacion detalladamente: 
+````css
+background: linear-gradient(270deg, #0a69e6, #b30ec2, #7808d4, #180ace);
+background-size: 800% 800%;
+animation: fondoAnimado 10s ease infinite;
+}
+@keyframes fondoAnimado {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
+````
+
+**Respuesta obtenida:**
+Perfecto, esta animación está muy buena 👀 — te la explico como si la estuvieras construyendo desde cero.
+
+🎯 ¿Qué hace esta animación?
+
+👉 Crea un fondo con gradiente que se mueve suavemente, dando un efecto tipo:
+“fluido”
+“neón”
+“vivo”
+
+🧠 1. El gradiente base
+````css
+background: linear-gradient(270deg, #0a69e6, #b30ec2, #7808d4, #180ace);
+````
+👉 Esto crea un degradado de colores
+🔍 Detalles:
+270deg → dirección del gradiente (de derecha a izquierda)
+Colores:
+azul → morado → violeta → azul oscuro
+💡 Sin animación, esto sería solo un fondo estático.
+
+🧠 2. El truco clave (MUY importante)
+````css
+background-size: 800% 800%;
+````
+👉 Esto hace que el fondo sea mucho más grande que el elemento.
+🔍 ¿Por qué 800%?
+El fondo es 8 veces más grande
+Entonces hay “más gradiente” que se puede mover
+💡 Sin esto, la animación casi no se notaría.
+
+🎬 3. Activar la animación
+````css
+animation: fondoAnimado 10s ease infinite;
+````
+👉 Esto le dice al CSS:
+fondoAnimado → nombre de la animación
+10s → dura 10 segundos
+ease → movimiento suave
+infinite → se repite siempre
+
+🎥 4. La animación (@keyframes)
+````css
+@keyframes fondoAnimado {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
+````
+👉 Aquí defines cómo se mueve el fondo.
+
+🔍 Paso a paso:
+
+🟢 0%
+````css
+background-position: 0% 50%;
+````
+👉 El fondo empieza:
+en el lado izquierdo (0%)
+centrado verticalmente (50%)
+
+🟡 50%
+````css
+background-position: 100% 50%;
+````
+👉 El fondo se mueve:
+hasta el lado derecho (100%)
+💡 Aquí ocurre el desplazamiento principal.
+
+🔵 100%
+````css
+background-position: 0% 50%;
+````
+👉 Vuelve al inicio.
+💡 Esto crea un loop suave.
+
+🔥 ¿Qué efecto visual genera?
+👉 El gradiente parece:
+moverse de izquierda a derecha
+cambiar constantemente
+fluir como una ola 🌊
+
+🧠 Concepto clave (IMPORTANTE)
+Esto funciona porque:
+👉 No estás animando colores… estás moviendo el fondo
+
+🎯 Analogía fácil
+Imagina:
+Tienes una imagen gigante (el gradiente)
+Y solo ves una ventana pequeña (tu pantalla)
+👉 Lo que haces es mover la imagen detrás de la ventana
+
+**Aplicación en el proyecto:**
+Está explicación se usó para entender e implementar esta función en otras etiquetas del html para armonizar el diseño del sitio web.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+## Prompt 8: Responsive design
+
+**Prompt:**
+````html
+<label>Seleccione la cantidad de colores</label>
+    <select>
+        <option>6 colores</option>
+        <option>8 colores</option>
+        <option>9 colores</option>
+    </select>
+````
+esta es la estructura que quiero usar, es la que tengo en mi html, con eso en base, como hago para que se vea más agradable usando css, ojo, no quiero cambios de la estructura de html, solo diseño desde css
+
+**Respuesta obtenida:**
+🎨 CSS mejorado (sin tocar tu HTML)
+````css
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+  color: #333;
+}
+
+select {
+  width: 200px;
+  padding: 10px 12px;
+
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  background-color: #88515f;
+  color: white;
+
+  border: none;
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+  transition: all 0.2s ease;
+
+  outline: none; /* quita borde azul */
+}
+````
+✨ Interacción (muy importante)
+````css
+select:hover {
+  transform: translateY(-1px);
+  box-shadow: 0px 6px 12px rgba(0,0,0,0.3);
+}
+
+select:focus {
+  box-shadow: 0px 0px 0px 2px rgba(136, 81, 95, 0.4);
+}
+````
+🎯 Opcional (mejorar apariencia de opciones)
+````css
+option {
+  background: white;
+  color: #333;
+}
+````
+🧠 ¿Qué mejoramos?
+🔹 padding
+👉 Más espacio interno → se ve “inflado”
+
+🔹 border-radius
+👉 Bordes suaves → moderno
+
+🔹 box-shadow
+👉 Sensación de profundidad
+
+🔹 hover + focus
+👉 Feedback visual (muy importante para UX)
+
+**Aplicación en el proyecto:**
+Este prompt se uso para mejorar la organización del archivo html, y para mejorar el aspecto visula del desplegable.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ## Prompt 6: Responsive design
 
 **Prompt:**
