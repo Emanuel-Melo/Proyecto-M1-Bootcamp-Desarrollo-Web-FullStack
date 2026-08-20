@@ -1,5 +1,7 @@
 /*==============================================================================================*/
 
+@import "./variables.css";
+
 html {
     scroll-behavior: smooth;
 }
@@ -9,7 +11,7 @@ html {
 body {
     margin: 0;
     height: 100vh;
-    background: linear-gradient(270deg, #88515f, #a38a89, #7492b1, #34414f);
+    background: linear-gradient(270deg, var(--bg1), var(--bg2), var(--bg3), var(--bg4));
     background-size: 800% 800%;
     animation: degradaciónFondo 10s ease infinite, slide 3s ease 1;
 }
@@ -20,12 +22,10 @@ body {
 }
 @keyframes slide {
     from {
-    translate: 150vw 0;
-    scale: 200% 1;
+    transform: translate(150vw, 0) scale(2, 1);
     }
     to {
-    translate: 0 0;
-    scale: 100% 1;
+    transform: translate(0, 0) scale(1, 1);
     }
 }   
 
@@ -38,7 +38,7 @@ body {
     margin: 0 auto;
     height: 300px;
     align-items: flex-end;
-    color: rgb(222, 238, 255);
+    color: var(--text-light);
     font-size: 13px;
 }
 
@@ -46,8 +46,8 @@ body {
 
 h1 {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-size: 100px; 
-    color: rgb(52, 65, 79);
+    font-size: var(--fs-h1);
+    color: var(--text-dark);
     height: 150px;
     width: fit-content;
     margin: 0 auto;
@@ -69,12 +69,12 @@ h2 {
 
 a{
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    color: rgb(222, 238, 255);
-    background-color: #34414f;
+    color: var(--text-light);
+    background-color: var(--bg4);
     font-size: 30px;
-    border-radius: 15px;
+    border-radius: var(--radius-md);
     text-decoration: none;
-    transition: all 0.2s ease;
+    transition: all var(--transition-fast) ease;
     width: fit-content;
     margin: 0 auto;
     display: block;
@@ -95,11 +95,11 @@ a{
 }
 a:hover {
     transform: translateY(-2px);
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.568);
+    box-shadow: var(--shadow-lg);
 }
 a:active {
     transform: translateY(1px);
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.212);
+    box-shadow: var(--shadow-sm);
 }
 
 /*==============================================================================================*/
@@ -113,8 +113,8 @@ a:active {
 h3 {
     font-family: 'Playfair Display', serif;
     font-style: italic;
-    color: rgb(222, 238, 255);  
-    font-size: 60px;
+    color: var(--text-light);  
+    font-size: var(--fs-h3);
     display: block; 
     width: fit-content;
     margin: 0 auto;
@@ -131,18 +131,18 @@ h3 {
     flex-wrap: wrap;
     height: 160px;
     justify-content: center;
-    border-radius: 15px;
+    border-radius: var(--radius-md);
 }
 
 /*==============================================================================================*/
 
 .color {
-    color: #c9cad3;
+    color: var(--muted);
     padding: 20px;
     margin: 5px;
     text-align: center;
-    border: 2px solid #c9cad3;
-    border-radius: 15px;
+    border: var(--border-default);
+    border-radius: var(--radius-md);
     flex: 1;
 }
 
@@ -150,7 +150,7 @@ h3 {
 
 label{
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    color: rgb(222, 238, 255);
+    color: var(--text-light);
     font-size: 25px; 
     border-radius: 5px;
     display: block; 
@@ -163,20 +163,20 @@ label{
 select {
     width: 150px;
     padding: 10px 12px;
-    background-color: #88515f;
-    color: rgb(222, 238, 255);
+    background-color: var(--accent);
+    color: var(--text-light);
     border: none;
-    border-radius: 8px;
+    border-radius: var(--radius-sm);
     cursor: pointer;
-    box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
-    transition: all 0.2s ease;
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-fast) ease;
     outline: 2px solid transparent;
     display: block;
     margin: 0 auto;
 }
 select:hover {
     transform: translateY(-1px);
-    box-shadow: 0px 6px 12px rgba(0,0,0,0.3);
+    box-shadow: var(--shadow-lg);
 }
 select:active {
     box-shadow: 0px 0px 0px 2px rgba(136, 81, 95, 0.4);
@@ -187,27 +187,27 @@ select:active {
 button {
     height: 100px;
     padding: 10px 20px;             
-    color: rgb(222, 238, 255);
+    color: var(--text-light);
     border: none;
-    border-radius: 20px;
+    border-radius: var(--radius-lg);
     font-size: 40px;
     cursor: pointer;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.226);
-    transition: all 0.5s ease;
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-slow) ease;
     display: block; 
     width: fit-content;
     margin: 0 auto;
-    background: linear-gradient(270deg, #2f64aa, #771717, #b35d61, #254786);
+    background: linear-gradient(270deg, var(--btn1), var(--btn2), var(--btn3), var(--btn4));
     background-size: 500% 500%;
     animation: degradaciónBoton 6s ease infinite;
 }
 button:hover {
     transform: translateY(-2px);
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.568);
+    box-shadow: var(--shadow-lg);
 }
 button:active {
     transform: translateY(1px);
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.212);
+    box-shadow: var(--shadow-sm);
 }
 
     @keyframes degradaciónBoton {
@@ -218,12 +218,14 @@ button:active {
 
 /*==============================================================================================*/
 
+#toggle {
+}
 .toggle {
     position: relative;
     width: 170px;
     height: 45px;
-    border: 2px solid #c9cad3;
-    border-radius: 25px;
+    border: var(--border-default);
+    border-radius: var(--radius-pill);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -240,17 +242,17 @@ button:active {
     z-index: 2;
     cursor: pointer;
     font-size: 16px;
-    color: rgb(19, 27, 34);
-    transition: 0.2s;
+    color: var(--text-dark);
+    transition: var(--transition-fast);
 }
 .slider {
     position: absolute;
     width: 50%;
     height: 80%;
-    background: rgb(52, 65, 79);
-    border-radius: 20px;
+    background: var(--text-dark);
+    border-radius: var(--radius-md);
     left: 5px;
-    transition: 0.3s ease;
+    transition: var(--transition-medium) ease;
 }
 #hex:checked ~ .slider {
     left: 5px;
@@ -260,14 +262,14 @@ button:active {
 }
 #hex:checked ~ label[for="hex"],
 #hsl:checked ~ label[for="hsl"] {
-    color: rgb(222, 238, 255);
+    color: var(--text-light);
 }
 
 /*==============================================================================================*/
 
 @media (max-width: 768px) {
     h1 {
-        font-size: 50px;
+        font-size: var(--fs-h1-sm);
         height: auto;
     }
     h2 {
@@ -275,7 +277,7 @@ button:active {
         height: auto;
     }
     h3 {
-        font-size: 30px;
+        font-size: var(--fs-h3-sm);
         height: auto;
     }
     .color {

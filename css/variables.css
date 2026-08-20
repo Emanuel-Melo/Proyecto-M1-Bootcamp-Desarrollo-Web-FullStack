@@ -1,0 +1,45 @@
+/* CSS Variables: Colores, bordes, radios, sombras, transiciones, tamaños */
+:root {
+	/* Colores */
+	--bg1: #88515f;
+	--bg2: #a38a89;
+	--bg3: #7492b1;
+	--bg4: #34414f;
+
+	--btn1: #2f64aa;
+	--btn2: #771717;
+	--btn3: #b35d61;
+	--btn4: #254786;
+
+	--text-light: rgb(222, 238, 255);
+	--text-dark: rgb(52, 65, 79);
+	--muted: #c9cad3;
+	--accent: #88515f;
+
+	/* Bordes */
+	--border-default: 2px solid var(--muted);
+
+	/* Radios */
+	--radius-sm: 8px;
+	--radius-md: 15px;
+	--radius-lg: 20px;
+	--radius-pill: 25px;
+
+	/* Sombras */
+	--shadow-sm: 0px 2px 4px rgba(0, 0, 0, 0.212);
+	--shadow-md: 0px 4px 8px rgba(0, 0, 0, 0.226);
+	--shadow-lg: 0px 6px 12px rgba(0, 0, 0, 0.568);
+
+	/* Transiciones */
+	--transition-fast: 0.2s;
+	--transition-medium: 0.3s;
+	--transition-slow: 0.5s;
+
+	/* Tamaños de fuente reutilizables */
+	--fs-h1: 100px;
+	--fs-h2: 30px;
+	--fs-h3: 60px;
+	--fs-h1-sm: 50px;
+	--fs-h3-sm: 30px;
+}
+
