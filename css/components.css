@@ -160,8 +160,6 @@ button:active {
 	100% {background-position: 0% 50%;}
 }
 
-#toggle {
-}
 .toggle {
 	position: relative;
 	width: 170px;
