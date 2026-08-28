@@ -70,18 +70,7 @@ boton.addEventListener("click", function() {
 
 const canvas = document.getElementById("water-canvas");
 const contexto = canvas.getContext("2d");
-const coloresAgua = [
-    "#b000ff",
-    "#ff00d4",
-    "#ff247f",
-    "#ff6a00",
-    "#fff000",
-    "#39ff14",
-    "#00ffb7",
-    "#00fff0"
-];
 const ondas = [];
-const rastros = [];
 let escala = window.devicePixelRatio || 1;
 let cursor = { x: -100, y: -100 };
 let ultimaPosicion = { x: -100, y: -100 };
@@ -94,23 +83,15 @@ function ajustarCanvas() {
 }
 
 function crearCorriente(x, y, distancia) {
-    const color = coloresAgua[Math.floor(Math.random() * coloresAgua.length)];
-
     ondas.push({
-        x,
-        y,
-        radio: 4,
+        x: x + (Math.random() - 0.5) * 24,
+        y: y + (Math.random() - 0.5) * 24,
+        radio: 35 + Math.random() * 22,
         vida: 1,
-        velocidad: 0.45 + Math.min(distancia / 140, 0.9),
-        color
-    });
-
-    rastros.push({
-        x,
-        y,
-        radio: 2 + Math.random() * 3,
-        vida: 0.55,
-        color
+        demora: 35,
+        velocidad: 0.2 + Math.min(distancia / 240, 0.45),
+        tono: Math.random() * 360,
+        fase: Math.random() * Math.PI * 2
     });
 }
 
@@ -120,35 +101,37 @@ function dibujarAgua() {
     for (let indice = ondas.length - 1; indice >= 0; indice -= 1) {
         const onda = ondas[indice];
         onda.radio += onda.velocidad;
-        onda.vida -= 0.006;
+        onda.fase += 0.025;
+        onda.tono = (onda.tono + 0.45) % 360;
+        onda.x += Math.sin(onda.fase) * 0.18;
+        onda.y += Math.cos(onda.fase * 0.8) * 0.18;
+        onda.demora -= 1;
+        if (onda.demora <= 0) {
+            onda.vida -= 0.006;
+        }
 
         contexto.beginPath();
         contexto.arc(onda.x, onda.y, onda.radio, 0, Math.PI * 2);
         contexto.globalAlpha = onda.vida * 0.65;
-        contexto.fillStyle = onda.color;
-        contexto.shadowColor = onda.color;
-        contexto.shadowBlur = 18;
+        const gradiente = contexto.createRadialGradient(
+            onda.x - onda.radio * 0.25,
+            onda.y - onda.radio * 0.25,
+            0,
+            onda.x,
+            onda.y,
+            onda.radio
+        );
+        gradiente.addColorStop(0, `hsla(${onda.tono}, 100%, 68%, 0.95)`);
+        gradiente.addColorStop(0.45, `hsla(${(onda.tono + 55) % 360}, 100%, 58%, 0.7)`);
+        gradiente.addColorStop(1, `hsla(${(onda.tono + 145) % 360}, 100%, 52%, 0)`);
+        contexto.fillStyle = gradiente;
+        contexto.shadowColor = `hsl(${onda.tono}, 100%, 60%)`;
+        contexto.shadowBlur = 24;
         contexto.fill();
         contexto.shadowBlur = 0;
 
         if (onda.vida <= 0) {
             ondas.splice(indice, 1);
-        }
-    }
-
-    for (let indice = rastros.length - 1; indice >= 0; indice -= 1) {
-        const rastro = rastros[indice];
-        rastro.radio += 0.25;
-        rastro.vida -= 0.009;
-
-        contexto.beginPath();
-        contexto.arc(rastro.x, rastro.y, rastro.radio, 0, Math.PI * 2);
-        contexto.fillStyle = rastro.color;
-        contexto.globalAlpha = rastro.vida * 0.5;
-        contexto.fill();
-
-        if (rastro.vida <= 0) {
-            rastros.splice(indice, 1);
         }
     }
 
@@ -166,17 +149,6 @@ window.addEventListener("pointermove", function(evento) {
     cursor = { x: evento.clientX, y: evento.clientY };
     if (distancia > 12) {
         crearCorriente(cursor.x, cursor.y, distancia);
-        const circulo = document.createElement("span");
-        const colorVibrante = coloresAgua[Math.floor(Math.random() * coloresAgua.length)];
-
-        circulo.className = "water-circle";
-        circulo.style.left = `${cursor.x}px`;
-        circulo.style.top = `${cursor.y}px`;
-        circulo.style.backgroundColor = colorVibrante;
-        circulo.addEventListener("animationend", function() {
-            circulo.remove();
-        });
-        document.body.appendChild(circulo);
         ultimaPosicion = cursor;
     }
 });

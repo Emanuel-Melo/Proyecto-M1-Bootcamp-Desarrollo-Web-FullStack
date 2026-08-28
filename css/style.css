@@ -32,29 +32,6 @@ body > main {
     z-index: 1;
 }
 
-.water-circle {
-    position: fixed;
-    width: 34px;
-    aspect-ratio: 1;
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 0;
-    filter: blur(8px);
-    transform: translate(-50%, -50%);
-    animation: waterCircle var(--water-duration) ease-out forwards;
-}
-
-@keyframes waterCircle {
-    0% {
-        opacity: 0.9;
-        transform: translate(-50%, -50%) scale(0.35);
-    }
-    100% {
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(2.8);
-    }
-}
-
 @keyframes slide {
     from {
     transform: translate(150vw, 0) scale(2, 1);
