@@ -71,14 +71,14 @@ boton.addEventListener("click", function() {
 const canvas = document.getElementById("water-canvas");
 const contexto = canvas.getContext("2d");
 const coloresAgua = [
-    "#a83dff",
-    "#d946ef",
-    "#ff4fa3",
-    "#ff8a3d",
-    "#ffe45c",
-    "#74df45",
-    "#18d89b",
-    "#00cfc7"
+    "#b000ff",
+    "#ff00d4",
+    "#ff247f",
+    "#ff6a00",
+    "#fff000",
+    "#39ff14",
+    "#00ffb7",
+    "#00fff0"
 ];
 const ondas = [];
 const rastros = [];
@@ -101,7 +101,7 @@ function crearCorriente(x, y, distancia) {
         y,
         radio: 4,
         vida: 1,
-        velocidad: 0.8 + Math.min(distancia / 80, 1.5),
+        velocidad: 0.45 + Math.min(distancia / 140, 0.9),
         color
     });
 
@@ -120,14 +120,16 @@ function dibujarAgua() {
     for (let indice = ondas.length - 1; indice >= 0; indice -= 1) {
         const onda = ondas[indice];
         onda.radio += onda.velocidad;
-        onda.vida -= 0.012;
+        onda.vida -= 0.006;
 
         contexto.beginPath();
         contexto.arc(onda.x, onda.y, onda.radio, 0, Math.PI * 2);
-        contexto.strokeStyle = onda.color;
         contexto.globalAlpha = onda.vida * 0.65;
-        contexto.lineWidth = 1.5;
-        contexto.stroke();
+        contexto.fillStyle = onda.color;
+        contexto.shadowColor = onda.color;
+        contexto.shadowBlur = 18;
+        contexto.fill();
+        contexto.shadowBlur = 0;
 
         if (onda.vida <= 0) {
             ondas.splice(indice, 1);
@@ -137,7 +139,7 @@ function dibujarAgua() {
     for (let indice = rastros.length - 1; indice >= 0; indice -= 1) {
         const rastro = rastros[indice];
         rastro.radio += 0.25;
-        rastro.vida -= 0.018;
+        rastro.vida -= 0.009;
 
         contexto.beginPath();
         contexto.arc(rastro.x, rastro.y, rastro.radio, 0, Math.PI * 2);
@@ -162,8 +164,19 @@ window.addEventListener("pointermove", function(evento) {
     );
 
     cursor = { x: evento.clientX, y: evento.clientY };
-    if (distancia > 4) {
+    if (distancia > 12) {
         crearCorriente(cursor.x, cursor.y, distancia);
+        const circulo = document.createElement("span");
+        const colorVibrante = coloresAgua[Math.floor(Math.random() * coloresAgua.length)];
+
+        circulo.className = "water-circle";
+        circulo.style.left = `${cursor.x}px`;
+        circulo.style.top = `${cursor.y}px`;
+        circulo.style.backgroundColor = colorVibrante;
+        circulo.addEventListener("animationend", function() {
+            circulo.remove();
+        });
+        document.body.appendChild(circulo);
         ultimaPosicion = cursor;
     }
 });
