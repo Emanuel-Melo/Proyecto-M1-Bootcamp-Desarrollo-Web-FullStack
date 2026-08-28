@@ -6,7 +6,7 @@ const fluidConfig = {
     resolutionScale: 0.55,
     velocityDissipation: 0.985,
     mouseForce: 2.4,
-    splatRadius: 0.0025,
+    splatRadius: 0.001,
     pressureIterations: 12,
     trailSeconds: 2
 };
@@ -269,7 +269,7 @@ function injectMouse(marcaTiempo) {
     setTexture(programs.splatVelocity, "velocity", velocity, 0);
     setVector(programs.splatVelocity, "point", mousePosition.x, mousePosition.y);
     setVector(programs.splatVelocity, "force", mouseVelocity.x * force / speed, mouseVelocity.y * force / speed);
-    setNumber(programs.splatVelocity, "radius", fluidConfig.splatRadius + force * 0.025);
+    setNumber(programs.splatVelocity, "radius", fluidConfig.splatRadius + force * 0.008);
     draw(programs.splatVelocity);
     swap(velocity, velocitySwap);
 
@@ -278,7 +278,7 @@ function injectMouse(marcaTiempo) {
     setVector(programs.splatDye, "point", mousePosition.x, mousePosition.y);
     const color = hsvToRgb((marcaTiempo * 0.000035 + mousePosition.x * 0.32 + mousePosition.y * 0.18) % 1);
     gl.uniform3f(gl.getUniformLocation(programs.splatDye, "color"), color[0], color[1], color[2]);
-    setNumber(programs.splatDye, "radius", fluidConfig.splatRadius + force * 0.04);
+    setNumber(programs.splatDye, "radius", fluidConfig.splatRadius + force * 0.012);
     draw(programs.splatDye);
     swap(dye, dyeSwap);
 }
