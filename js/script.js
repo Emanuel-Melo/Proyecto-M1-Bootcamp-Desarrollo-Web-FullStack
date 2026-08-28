@@ -2,6 +2,31 @@ const boton = document.getElementById("generar");
 const colores = document.querySelectorAll(".color");
 const select = document.getElementById("cantidad");
 const modos = document.getElementsByName("mode");
+const menuCantidad = document.getElementById("menuCantidad");
+const botonCantidad = menuCantidad.querySelector(".dropdown-toggle");
+const opcionesCantidad = menuCantidad.querySelectorAll("li a");
+
+botonCantidad.addEventListener("click", function() {
+    const estaAbierto = menuCantidad.classList.toggle("active");
+    botonCantidad.setAttribute("aria-expanded", estaAbierto);
+});
+
+opcionesCantidad.forEach(function(opcion) {
+    opcion.addEventListener("click", function(evento) {
+        evento.preventDefault();
+        select.value = opcion.dataset.value;
+        botonCantidad.querySelector("span").textContent = opcion.textContent;
+        menuCantidad.classList.remove("active");
+        botonCantidad.setAttribute("aria-expanded", "false");
+    });
+});
+
+document.addEventListener("click", function(evento) {
+    if (!menuCantidad.contains(evento.target)) {
+        menuCantidad.classList.remove("active");
+        botonCantidad.setAttribute("aria-expanded", "false");
+    }
+});
 
 
 boton.addEventListener("click", function() {
@@ -214,3 +239,4 @@ botonLiquido.addEventListener("pointerleave", function() {
 window.addEventListener("resize", construirPuntosLiquidos);
 construirPuntosLiquidos();
 renderizarBotonLiquido();
+

@@ -1,11 +1,9 @@
 @media (max-width: 768px) {
 	h1 {
 		font-size: var(--fs-h1-sm);
-		height: auto;
 	}
 	h2 {
 		font-size: 20px;
-		height: auto;
 	}
 	h3 {
 		font-size: var(--fs-h3-sm);
@@ -30,7 +28,7 @@
 		width: 140px;
 		height: 40px;
 	}
-	select {
-		width: 120px;
+	.card-drop {
+		width: min(200px, calc(100% - 24px));
 	}
 }

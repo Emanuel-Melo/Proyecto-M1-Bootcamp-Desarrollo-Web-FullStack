@@ -11,6 +11,7 @@ html {
 body {
     margin: 0;
     height: 100vh;
+    font-family: var(--font-primary);
     background: #000;
     animation: slide 3s ease 1;
 }
