@@ -15,7 +15,7 @@
 	--text-dark: rgb(52, 65, 79);
 	--muted: #c9cad3;
 	--accent: #88515f;
-	--title-gradient: linear-gradient(90deg, #ff2bd6 0%, #9b4dff 20%, #2f7bff 40%, #00d9b5 58%, #68e336 72%, #ffe14a 86%, #ff6b35 100%);
+	--title-gradient: linear-gradient(90deg, #a83dff 0%, #d946ef 13%, #ff4fa3 28%, #ff8a3d 43%, #ffe45c 57%, #74df45 72%, #18d89b 86%, #00cfc7 100%);
 
 	/* Bordes */
 	--border-default: 2px solid var(--muted);
