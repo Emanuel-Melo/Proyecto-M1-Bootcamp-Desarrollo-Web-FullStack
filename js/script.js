@@ -67,3 +67,106 @@ function obtenerModo() {
 boton.addEventListener("click", function() {
     console.log(obtenerModo());
 });
+
+const canvas = document.getElementById("water-canvas");
+const contexto = canvas.getContext("2d");
+const coloresAgua = [
+    "#a83dff",
+    "#d946ef",
+    "#ff4fa3",
+    "#ff8a3d",
+    "#ffe45c",
+    "#74df45",
+    "#18d89b",
+    "#00cfc7"
+];
+const ondas = [];
+const rastros = [];
+let escala = window.devicePixelRatio || 1;
+let cursor = { x: -100, y: -100 };
+let ultimaPosicion = { x: -100, y: -100 };
+
+function ajustarCanvas() {
+    escala = window.devicePixelRatio || 1;
+    canvas.width = window.innerWidth * escala;
+    canvas.height = window.innerHeight * escala;
+    contexto.setTransform(escala, 0, 0, escala, 0, 0);
+}
+
+function crearCorriente(x, y, distancia) {
+    const color = coloresAgua[Math.floor(Math.random() * coloresAgua.length)];
+
+    ondas.push({
+        x,
+        y,
+        radio: 4,
+        vida: 1,
+        velocidad: 0.8 + Math.min(distancia / 80, 1.5),
+        color
+    });
+
+    rastros.push({
+        x,
+        y,
+        radio: 2 + Math.random() * 3,
+        vida: 0.55,
+        color
+    });
+}
+
+function dibujarAgua() {
+    contexto.clearRect(0, 0, window.innerWidth, window.innerHeight);
+
+    for (let indice = ondas.length - 1; indice >= 0; indice -= 1) {
+        const onda = ondas[indice];
+        onda.radio += onda.velocidad;
+        onda.vida -= 0.012;
+
+        contexto.beginPath();
+        contexto.arc(onda.x, onda.y, onda.radio, 0, Math.PI * 2);
+        contexto.strokeStyle = onda.color;
+        contexto.globalAlpha = onda.vida * 0.65;
+        contexto.lineWidth = 1.5;
+        contexto.stroke();
+
+        if (onda.vida <= 0) {
+            ondas.splice(indice, 1);
+        }
+    }
+
+    for (let indice = rastros.length - 1; indice >= 0; indice -= 1) {
+        const rastro = rastros[indice];
+        rastro.radio += 0.25;
+        rastro.vida -= 0.018;
+
+        contexto.beginPath();
+        contexto.arc(rastro.x, rastro.y, rastro.radio, 0, Math.PI * 2);
+        contexto.fillStyle = rastro.color;
+        contexto.globalAlpha = rastro.vida * 0.5;
+        contexto.fill();
+
+        if (rastro.vida <= 0) {
+            rastros.splice(indice, 1);
+        }
+    }
+
+    contexto.globalAlpha = 1;
+    requestAnimationFrame(dibujarAgua);
+}
+
+window.addEventListener("resize", ajustarCanvas);
+window.addEventListener("pointermove", function(evento) {
+    const distancia = Math.hypot(
+        evento.clientX - ultimaPosicion.x,
+        evento.clientY - ultimaPosicion.y
+    );
+
+    cursor = { x: evento.clientX, y: evento.clientY };
+    if (distancia > 4) {
+        crearCorriente(cursor.x, cursor.y, distancia);
+        ultimaPosicion = cursor;
+    }
+});
+
+ajustarCanvas();
+dibujarAgua();
