@@ -6,7 +6,7 @@ Aplicación web interactiva que genera paletas de colores aleatorias en formato 
 
 Demo
 
-🔗 ((https://emanuel-melo.github.io/ProyectoM1_EmanuelFlorez/)
+🔗 https://proyecto-m1-emanuel-florez.vercel.app/ 
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
 
