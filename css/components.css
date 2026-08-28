@@ -144,36 +144,48 @@ select:active {
 	box-shadow: 0px 0px 0px 2px rgba(136, 81, 95, 0.4);
 }
 
-button {
-	height: 100px;
-	padding: 10px 20px;             
-	color: var(--text-light);
-	border: none;
-	border-radius: var(--radius-lg);
-	font-size: 40px;
-	cursor: pointer;
-	box-shadow: var(--shadow-md);
-	transition: all var(--transition-slow) ease;
-	display: block; 
-	width: fit-content;
+.btn-liquid {
+	position: relative;
+	display: block;
+	width: min(240px, calc(100% - 24px));
+	height: 60px;
+	padding: 0;
 	margin: 0 auto;
-	background: linear-gradient(270deg, var(--btn1), var(--btn2), var(--btn3), var(--btn4));
-	background-size: 500% 500%;
-	animation: degradaciónBoton 6s ease infinite;
+	overflow: visible;
+	border: 0;
+	border-radius: 27px;
+	color: var(--text-light);
+	background: transparent;
+	font: 700 14px/60px system-ui, sans-serif;
+	letter-spacing: 0.05em;
+	text-align: center;
+	text-transform: uppercase;
+	cursor: pointer;
+	box-shadow: none;
+	transition: transform var(--transition-fast) ease, filter var(--transition-fast) ease;
 }
-button:hover {
+.btn-liquid:hover {
 	transform: translateY(-2px);
-	box-shadow: var(--shadow-lg);
+	filter: drop-shadow(var(--shadow-lg));
 }
-button:active {
+.btn-liquid:active {
 	transform: translateY(1px);
-	box-shadow: var(--shadow-sm);
+	filter: drop-shadow(var(--shadow-sm));
 }
-
-@keyframes degradaciónBoton {
-	0% {background-position: 0% 50%;}
-	50% {background-position: 100% 50%;}
-	100% {background-position: 0% 50%;}
+.btn-liquid .inner {
+	position: relative;
+	z-index: 2;
+}
+.btn-liquid canvas {
+	position: absolute;
+	top: -50px;
+	right: -50px;
+	bottom: -50px;
+	left: -50px;
+	z-index: 1;
+	width: calc(100% + 100px);
+	height: calc(100% + 100px);
+	pointer-events: none;
 }
 
 .toggle {

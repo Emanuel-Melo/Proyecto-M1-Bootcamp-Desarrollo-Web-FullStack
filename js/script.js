@@ -183,3 +183,150 @@ window.addEventListener("pointermove", function(evento) {
 
 ajustarCanvas();
 dibujarAgua();
+
+const botonLiquido = document.getElementById("generar");
+const canvasLiquido = botonLiquido.querySelector("canvas");
+const contextoLiquido = canvasLiquido.getContext("2d");
+const puntosLiquidos = [];
+const puntosLiquidosDelanteros = [];
+const configuracionLiquida = {
+    puntos: 8,
+    viscosidad: 20,
+    distanciaMouse: 70,
+    amortiguacion: 0.05
+};
+let mouseLiquido = { x: -100, y: -100 };
+let ultimoMouseLiquido = { x: -100, y: -100 };
+let direccionMouseLiquido = { x: 0, y: 0 };
+let velocidadMouseLiquido = { x: 0, y: 0 };
+
+function crearPuntoLiquido(x, y, nivel) {
+    return {
+        x: 50 + x,
+        y: 50 + y,
+        baseX: 50 + x,
+        baseY: 50 + y,
+        velocidadX: 0,
+        velocidadY: 0,
+        nivel
+    };
+}
+
+function construirPuntosLiquidos() {
+    const ancho = botonLiquido.clientWidth;
+    const alto = botonLiquido.clientHeight;
+    const radio = alto / 2;
+    const puntos = configuracionLiquida.puntos;
+
+    canvasLiquido.width = ancho + 100;
+    canvasLiquido.height = alto + 100;
+    puntosLiquidos.length = 0;
+    puntosLiquidosDelanteros.length = 0;
+
+    function agregarPunto(x, y) {
+        puntosLiquidos.push(crearPuntoLiquido(x, y, 1));
+        puntosLiquidosDelanteros.push(crearPuntoLiquido(x, y, 2));
+    }
+
+    for (let indice = 1; indice < puntos; indice += 1) {
+        agregarPunto(radio + ((ancho - alto) / puntos) * indice, 0);
+    }
+    agregarPunto(ancho - radio / 5, 0);
+    agregarPunto(ancho + alto / 10, alto / 2);
+    agregarPunto(ancho - radio / 5, alto);
+    for (let indice = puntos - 1; indice > 0; indice -= 1) {
+        agregarPunto(radio + ((ancho - alto) / puntos) * indice, alto);
+    }
+    agregarPunto(alto / 5, alto);
+    agregarPunto(-alto / 10, alto / 2);
+    agregarPunto(alto / 5, 0);
+}
+
+function moverPuntoLiquido(punto) {
+    punto.velocidadX += (punto.baseX - punto.x) / (configuracionLiquida.viscosidad * punto.nivel);
+    punto.velocidadY += (punto.baseY - punto.y) / (configuracionLiquida.viscosidad * punto.nivel);
+
+    const distanciaX = mouseLiquido.x - punto.x;
+    const distanciaY = mouseLiquido.y - punto.y;
+    const distanciaReal = Math.sqrt((distanciaX ** 2) + (distanciaY ** 2));
+    const influencia = 1 - distanciaReal / configuracionLiquida.distanciaMouse;
+
+    if (influencia > 0) {
+        const fuerza = influencia * 0.08 / punto.nivel;
+        punto.velocidadX += distanciaX * fuerza;
+        punto.velocidadY += distanciaY * fuerza;
+    }
+
+    punto.velocidadX *= 1 - configuracionLiquida.amortiguacion;
+    punto.velocidadY *= 1 - configuracionLiquida.amortiguacion;
+    punto.x += punto.velocidadX;
+    punto.y += punto.velocidadY;
+}
+
+function dibujarFormaLiquida(puntos) {
+    contextoLiquido.beginPath();
+    contextoLiquido.moveTo(puntos[0].x, puntos[0].y);
+
+    for (let indice = 0; indice < puntos.length; indice += 1) {
+        const punto = puntos[indice];
+        const siguiente = puntos[(indice + 1) % puntos.length];
+        const medioX = (punto.x + siguiente.x) / 2;
+        const medioY = (punto.y + siguiente.y) / 2;
+        contextoLiquido.quadraticCurveTo(punto.x, punto.y, medioX, medioY);
+    }
+
+    contextoLiquido.closePath();
+    contextoLiquido.fill();
+}
+
+function renderizarBotonLiquido() {
+    contextoLiquido.clearRect(0, 0, canvasLiquido.width, canvasLiquido.height);
+
+    puntosLiquidos.forEach(moverPuntoLiquido);
+    puntosLiquidosDelanteros.forEach(moverPuntoLiquido);
+
+    contextoLiquido.fillStyle = "#00e5c7";
+    dibujarFormaLiquida(puntosLiquidos);
+
+    const gradiente = contextoLiquido.createRadialGradient(
+        mouseLiquido.x,
+        mouseLiquido.y,
+        0,
+        mouseLiquido.x,
+        mouseLiquido.y,
+        canvasLiquido.width * 0.9
+    );
+    gradiente.addColorStop(0, "#ff00d4");
+    gradiente.addColorStop(0.28, "#a83dff");
+    gradiente.addColorStop(0.52, "#ff8a3d");
+    gradiente.addColorStop(0.75, "#74df45");
+    gradiente.addColorStop(1, "#00cfc7");
+    contextoLiquido.fillStyle = gradiente;
+    dibujarFormaLiquida(puntosLiquidosDelanteros);
+
+    velocidadMouseLiquido.x *= 0.92;
+    velocidadMouseLiquido.y *= 0.92;
+    requestAnimationFrame(renderizarBotonLiquido);
+}
+
+botonLiquido.addEventListener("pointermove", function(evento) {
+    const rectangulo = canvasLiquido.getBoundingClientRect();
+    const posicionX = evento.clientX - rectangulo.left;
+    const posicionY = evento.clientY - rectangulo.top;
+
+    direccionMouseLiquido.x = posicionX > mouseLiquido.x ? 1 : posicionX < mouseLiquido.x ? -1 : 0;
+    direccionMouseLiquido.y = posicionY > mouseLiquido.y ? 1 : posicionY < mouseLiquido.y ? -1 : 0;
+    velocidadMouseLiquido.x = posicionX - mouseLiquido.x;
+    velocidadMouseLiquido.y = posicionY - mouseLiquido.y;
+    mouseLiquido = { x: posicionX, y: posicionY };
+});
+
+botonLiquido.addEventListener("pointerleave", function() {
+    mouseLiquido = { x: -100, y: -100 };
+    direccionMouseLiquido = { x: 0, y: 0 };
+    velocidadMouseLiquido = { x: 0, y: 0 };
+});
+
+window.addEventListener("resize", construirPuntosLiquidos);
+construirPuntosLiquidos();
+renderizarBotonLiquido();

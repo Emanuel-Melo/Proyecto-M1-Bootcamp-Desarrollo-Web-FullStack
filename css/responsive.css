@@ -20,6 +20,12 @@
 		height: auto;
 		padding: 10px;
 	}
+	.btn-liquid {
+		height: 60px;
+		padding: 0;
+		font-size: 12px;
+		line-height: 60px;
+	}
 	.toggle {
 		width: 140px;
 		height: 40px;
